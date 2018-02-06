@@ -92,7 +92,7 @@ findUserByString = (SearchString) => {
         userCollection.find({
             RoleID:2,
             $text:{
-                $search:  SearchString
+                $search:SearchString
             }
         }).toArray( (err, results) => {
             if(err)reject(err);
@@ -103,9 +103,9 @@ findUserByString = (SearchString) => {
 insertUserSiswa = (query) => {
     return new Promise((resolve, reject)=>{
         let userQuery={
-            NISLokal:query.NoInduk,
-            NamaSiswa:query.Nama.toUpperCase(),
-            JenisKelamin:query.JenisKelamin,
+            no_induk:query.NoInduk,
+            nama:query.Nama.toUpperCase(),
+            jenis_kelamin:query.JenisKelamin,
             RoleID:2,
             Password:bcyrpt.hashSync(query.Password, salt)
         };
@@ -119,9 +119,9 @@ updateUserSiswa = (query) => {
     return new Promise((resolve,reject)=>{
         userCollection.updateOne({_id: ObjectId(query._idEdit)},{ $set:
             {
-                NamaSiswa:query.NamaEdit,
-                NISLokal:query.NoIndukEdit,
-                JenisKelamin:query.JenisKelaminEdit
+                nama:query.NamaEdit,
+                no_induk:query.NoIndukEdit,
+                jenis_kelamin:query.JenisKelaminEdit
             }
         }, function(err, result) {
             if(err){

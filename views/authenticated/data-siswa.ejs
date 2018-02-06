@@ -4,7 +4,7 @@
   <title>Absensi</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
   <link href="/dist/semantic.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="/assets/images/logo.png"/>
+  <link rel="shortcut icon" href="/assets/images/absensi.png"/>
   <style>
 
   </style>
@@ -203,7 +203,7 @@
   <script type="text/javascript">
       $(document).ready(function(){
           let socket = io( "<%=URL_Service%>" );
-          socket.on('absensi', function(msg){
+          socket.on('<%=Socket_Name%>', function(msg){
               console.log(msg);
               loadRFIDFromMessage(msg);
           });
@@ -259,11 +259,11 @@
                       tr.appendChild(td = document.createElement("td"));
                       td.innerHTML =count;
                       tr.appendChild(td = document.createElement("td"));
-                      td.innerHTML =Data[j].NISLokal;
+                      td.innerHTML =Data[j].no_induk;
                       tr.appendChild(td = document.createElement("td"));
-                      td.innerHTML =Data[j].NamaSiswa;
+                      td.innerHTML =Data[j].nama;
                       tr.appendChild(td = document.createElement("td"));
-                      td.innerHTML =Data[j].JenisKelamin;
+                      td.innerHTML =Data[j].jenis_kelamin;
                       tr.appendChild(td = document.createElement("td"));
                       if(Data[j].rf_id!==undefined){
                           let rfidArray=Data[j].rf_id;
@@ -287,7 +287,7 @@
                       btn[j].name = "button"+j;
                       btn[j].className = "ui red button";
                       btn[j].value = "delete";
-                      btn[j].nama=Data[j].NamaSiswa;
+                      btn[j].nama=Data[j].Nama;
                       btn[j].data=Data[j];
                       td.appendChild(btn[j]);
                       $("#button"+j+"").click(function () {
@@ -301,7 +301,7 @@
                       editBtn[j].name = "ebutton"+j;
                       editBtn[j].className = "ui blue button";
                       editBtn[j].value = "RFID";
-                      editBtn[j].nama=Data[j].NamaSiswa;
+                      editBtn[j].nama=Data[j].Nama;
                       editBtn[j]._id=Data[j]._id;
                       editBtn[j].data=Data[j] ;
                       td.appendChild(editBtn[j]);
@@ -315,7 +315,7 @@
                       editProfileBtn[j].name = "eprofilebutton"+j;
                       editProfileBtn[j].className = "ui green button";
                       editProfileBtn[j].value = "Edit Profile";
-                      editProfileBtn[j].nama=Data[j].NamaSiswa;
+                      editProfileBtn[j].nama=Data[j].Nama;
                       editProfileBtn[j]._id=Data[j]._id;
                       editProfileBtn[j].data=Data[j] ;
                       td.appendChild(editProfileBtn[j]);
@@ -328,9 +328,9 @@
           }
           function editFormOpen(data) {
               $(".editDataSiswaModalBody #_idEdit").val(data._id);
-              $(".editDataSiswaModalBody #NoIndukEdit").val(data.NISLokal);
-              $(".editDataSiswaModalBody #NamaEdit").val(data.NamaSiswa);
-              $("#JenisKelaminEdit").val(data.JenisKelamin).change();
+              $(".editDataSiswaModalBody #NoIndukEdit").val(data.no_induk);
+              $(".editDataSiswaModalBody #NamaEdit").val(data.nama);
+              $("#JenisKelaminEdit").val(data.jenis_kelamin).change();
               $('#editDataSiswa').modal('show');
           }
           function deleteFormOpen(data) {
@@ -339,8 +339,8 @@
           }
           function tambahRFIDSiswa(data) {
               $(".tambahRFIDSiswaFormModalBody #_id").val(data._id);
-              $(".tambahRFIDSiswaFormModalBody #NamaUserLabel").text(data.NamaSiswa);
-              $(".tambahRFIDSiswaFormModalBody #NoIndukLabel").text(data.NISLokal);
+              $(".tambahRFIDSiswaFormModalBody #NamaUserLabel").text(data.nama);
+              $(".tambahRFIDSiswaFormModalBody #NoIndukLabel").text(data.no_induk);
               $('#tambahRFIDSiswaForm').modal('show');
           }
           function loaddropdownmac() {

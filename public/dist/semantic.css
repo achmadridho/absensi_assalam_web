@@ -606,12 +606,12 @@ p:last-child {
 --------------------*/
 
 a {
-  color: #fff4e4;
+  color: #4183C4;
   text-decoration: none;
 }
 
 a:hover {
-  color: #fff4e4;
+  color: #1e70bf;
   text-decoration: none;
 }
 
@@ -621,7 +621,7 @@ a:hover {
 
 /* Site */
 
-:: -webkit-selection {
+::-webkit-selection {
   background-color: #CCE2FF;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -2555,7 +2555,7 @@ input::selection {
 
 .ui.blue.buttons .button,
 .ui.blue.button {
-  background-color: #fff4e4 ;
+  background-color: #2185D0;
   color: #FFFFFF;
   text-shadow: none;
   background-image: none;

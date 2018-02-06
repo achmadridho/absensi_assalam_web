@@ -17,9 +17,7 @@ router.get('/', async(req, res) => {
         res.render('index', { title: 'Absensi' });
     }
 });
-router.get('/index2', async(req, res) => {
-    res.render('index2', { title: 'Absensi' });
-});
+
 router.get('/login', function(req, res, next) {
     let Session=req.session;
     if(Session._id!==undefined){
@@ -53,7 +51,7 @@ router.get('/realtime', function(req, res, next) {
                 break
         }
     }else{
-        res.render('realtime-absensi', { title: 'Absensi',URL_Service:config.URL_SERVICE });
+        res.render('realtime-absensi', { title: 'Absensi',URL_Service:config.URL_SERVICE ,Socket_Name:config.SOCKET_NAME});
     }
 });
 router.get('/authenticated-realtime', function(req, res, next) {
@@ -61,11 +59,11 @@ router.get('/authenticated-realtime', function(req, res, next) {
     if(Session._id!==undefined){
         switch (parseInt(Session.RoleID)){
             case 0:
-                res.render('authenticated/realtime-absensi', { title: 'Absensi',URL_Service:config.URL_SERVICE});
+                res.render('authenticated/realtime-absensi', { title: 'Absensi',URL_Service:config.URL_SERVICE,Socket_Name:config.SOCKET_NAME});
                 break
         }
     }else{
-        res.render('realtime-absensi', { title: 'Absensi',URL_Service:config.URL_SERVICE });
+        res.render('realtime-absensi', { title: 'Absensi',URL_Service:config.URL_SERVICE,Socket_Name:config.SOCKET_NAME });
     }
 });
 router.get('/authenticated-alat-setting', function(req, res, next) {
@@ -73,11 +71,11 @@ router.get('/authenticated-alat-setting', function(req, res, next) {
     if(Session._id!==undefined){
         switch (parseInt(Session.RoleID)){
             case 0:
-                res.render('authenticated/alat-setting', { title: 'Absensi',URL_Service:config.URL_SERVICE});
+                res.render('authenticated/alat-setting', { title: 'Absensi',URL_Service:config.URL_SERVICE,Socket_Name:config.SOCKET_NAME});
                 break
         }
     }else{
-        res.render('index', { title: 'Absensi',URL_Service:config.URL_SERVICE });
+        res.render('index', { title: 'Absensi',URL_Service:config.URL_SERVICE,Socket_Name:config.SOCKET_NAME });
     }
 });
 router.get('/authenticated-data-siswa', function(req, res, next) {
@@ -85,11 +83,14 @@ router.get('/authenticated-data-siswa', function(req, res, next) {
     if(Session._id!==undefined){
         switch (parseInt(Session.RoleID)){
             case 0:
-                res.render('authenticated/data-siswa', { title: 'Absensi',URL_Service:config.URL_SERVICE});
+                res.render('authenticated/data-siswa', { title: 'Absensi',URL_Service:config.URL_SERVICE,Socket_Name:config.SOCKET_NAME});
                 break
         }
     }else{
-        res.render('index', { title: 'Absensi',URL_Service:config.URL_SERVICE });
+        res.render('index', { title: 'Absensi',URL_Service:config.URL_SERVICE,Socket_Name:config.SOCKET_NAME });
     }
 });
+
+
+
 module.exports = router;
